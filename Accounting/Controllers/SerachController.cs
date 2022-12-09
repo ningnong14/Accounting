@@ -18,6 +18,11 @@ namespace Accounting.Controllers
             _serachService = serachService;
         }
 
+        public async Task<IActionResult> Index()
+        {
+            return View();
+        }
+
         [HttpPost("SerachResult")]
         public async Task<IActionResult> SerachResult([FromBody] int billId)
         {

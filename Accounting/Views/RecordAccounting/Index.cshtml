@@ -1,0 +1,100 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width-device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>Layout</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#">Calculate</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="Serach.html">Search <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Features</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Pricing</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="#">Disabled</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="col-12 textcenter" id="showHeadder"><h1>Program Calculate Credit and Debit</h1></div>
+        </header>
+        <section>
+            <div class="col-12 headderName textcenter">
+                <h1>เพิ่มรายการภาษี</h1>
+            </div>
+            <div class="row textcenter">
+                <label for="date" class="col-3">วัน/เดือน/ปี</label>
+                <input type="date" class="col-3" id="date" name="date" placeholder="กรุณากรอกข้อมูล">
+            </div>
+            <div class="row textcenter">
+                <label for="list" class="col-3">รายการ Debit</label>
+                <select id="listDebit" class="col-3" id="list" name="list" placeholder="กรุณากรอกข้อมูล">
+                    <option value="1">ค่า Ems</option>
+                    <option value="2">เงินสด</option>
+                    <option value="3">ค่าเดินทาง</option>
+                    <option value="4">ค่าบริการ</option>
+                </select>
+            </div>
+            <div class="row textcenter">
+                <label for="codeListDebit" class="col-3">Code Debit</label>
+                <input type="text" class="col-3" id="codeListDebit" name="codeListDebit" placeholder="กรุณากรอกข้อมูล" disabled>
+            </div>
+            <div class="row textcenter">
+                <label for="debit" class="col-3">Debit</label>
+                <input type="text" class="col-3" id="debit" name="debit" placeholder="กรุณากรอกข้อมูล">
+            </div>
+            <div class="row textcenter">
+                <label for="listCredit" class="col-3">รายการ Credit</label>
+                <input type="text" class="col-3" id="listCredit" name="listCredit" placeholder="กรุณากรอกข้อมูล" disabled>
+            </div>
+            <div class="row textcenter">
+                <label for="codeListCredit" class="col-3">Code Credit</label>
+                <input type="text" class="col-3" id="codeListCredit" name="codeListCredit" placeholder="กรุณากรอกข้อมูล" disabled>
+            </div>
+            <div class="row textcenter">
+                <label for="credit" class="col-3">Credit</label>
+                <input type="text" class="col-3" id="credit" name="credit" placeholder="กรุณากรอกข้อมูล">
+            </div>
+            <div class="row textcenter">
+                <label for="description" class="col-3">Description</label>
+                <textarea id="description" name="description" rows="4" col="50"></textarea>
+            </div>
+            <div class="row textcenter" id="button">
+                <div class="col-10">
+                    <button type="button" class="btn btn-outline-primary buttonsize" id="buttonSummit">Summit</button>
+                </div>
+            </div>
+        </section>
+        <footer>
+            <div class="col-12" id="footer">
+                <h1>ขอให้ทำงานอย่างมีความสุขตลอดไป</h1>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

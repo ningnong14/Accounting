@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width-device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>Layout</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="index.html">Calculate</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="Serach.html">Search <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.html">login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Pricing</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="#">Disabled</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="col-12" id="showHeadder"><h1>Program Calculate Credit and Debit</h1></div>
+        </header>
+        <section>
+            <div class="col-12" id="headSection">
+                <div class="col-3 search"><h3>Serach</h3></div>
+            </div>
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-3">
+                        <label for="nameCompany" class="item">ชื่อบริษัท</label>
+                        <select id="nameCompany" class="col-12" id="list" name="list" placeholder="กรุณากรอกข้อมูล">
+                            <option value="1">บริษัท A</option>
+                            <option value="2">บริษัท B</option>
+                            <option value="3">บริษัท C</option>
+                            <option value="4">บริษัท D</option>
+                        </select>
+                    </div>
+                    <div class="col-3">
+                        <label for="exampleInput" class="item">TagId</label>
+                        <input type="email" id="exampleInput">
+                    </div>
+                    <div class="col-3">
+                        <label for="exampleInput" class="item">เดือน/วัน/ปี</label>
+                        <input type="date" id="exampleInput" class="col-12">
+                    </div>
+                    <div class="col-3">
+                        <label for="exampleInput" class="item">Description</label>
+                        <input type="text" id="exampleInput">
+                    </div>
+                </div>
+            </div>
+            <div class="row textcenter">
+                <div class="col-6">
+                    <button type="button" class="btn btn-outline-primary buttonsize" id="buttonSummit">Serach</button>
+                </div>
+                <div class="col-6">
+                    <button type="button" class="btn btn-outline-primary buttonsize" id="buttonSummit">Clear</button>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-3">
+                        <h3>Result________</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="row">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>รายการ</th>
+                                <th>หน้าบัญชี</th>
+                                <th>Dabit</th>
+                                <th>Credit</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>ค่าEMS</td>
+                                <td>-</td>
+                                <td>100</td>
+                                <td>0</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>ค่าเดินทาง</td>
+                                <td>-</td>
+                                <td>100</td>
+                                <td>0</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>เงินสด</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>200</td>
+                                <td>เงินสด</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

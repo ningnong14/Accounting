@@ -11,6 +11,10 @@ namespace Accounting.Controllers
         {
             _loginService= loginService;
         }
+        public IActionResult Index()
+        {
+            return View();
+        }
 
         [HttpPost("ValidateUser")]
         public async Task<IActionResult> ValidateUser([FromBody]UserLoginModel data)

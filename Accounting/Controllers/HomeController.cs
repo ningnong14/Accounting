@@ -9,12 +9,10 @@ namespace Accounting.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IDebitCodeService _addDetailService;
 
-        public HomeController(ILogger<HomeController> logger, IDebitCodeService addDetailService)
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            _addDetailService = addDetailService;
         }
 
         public IActionResult Index()

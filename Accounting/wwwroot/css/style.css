@@ -1,0 +1,186 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.container {
+    width: 880px;
+    margin: 0 auto;
+    background-color: #f1fdfc;
+    overflow: hidden;
+}
+
+header {
+    text-align: center;
+    width: 880px;
+    height: 150px;
+    margin-left: 117px;
+    background-color: #85B8CB;
+    color: white;
+}
+
+section {
+    margin-top: 10px;
+    margin-left: 117px;
+    width: 880px;
+    height: 650px;
+    background-color: #D1DDDB;
+}
+
+footer {
+    background-color: #85B8CB;
+    color: white;
+    width: 880px;
+    height: 50px;
+    margin-top: 10px;
+    margin-left: 117px;
+    margin-bottom: 10px;
+}
+
+#bar {
+    height: 50px;
+}
+
+section .row {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+section .headderName {
+    margin-bottom: 30px;
+    padding-top: 10px;
+}
+
+#footer {
+    text-align: center;
+}
+
+#bar {
+    background-color: #1D6A96;
+    color: white;
+}
+
+#buttonSummit {
+    border-color: #283B42;
+    color: #283B42;
+    margin-top: 20px;
+}
+
+    #buttonSummit:hover {
+        background-color: #283B42;
+        color: white
+    }
+
+.textcenter {
+    text-align: center;
+}
+
+textarea {
+    width: 300px;
+}
+
+
+#showHeadder {
+    text-align: center;
+    font-size: large;
+    font-weight: bold;
+    color: white;
+    padding: 20px;
+}
+
+#exampleInput {
+    display: block;
+}
+
+.item {
+    display: inline-block;
+    text-align: left;
+}
+
+.search {
+    padding: 10px;
+}
+
+#nameCompany {
+    display: block;
+    height: 28px;
+}
+
+.buttonsize {
+    width: 230px;
+}
+
+
+#main {
+    width: 880px;
+    margin: 0px 117px;
+    height: 500px;
+}
+
+#loginUser {
+    padding-top: 10px;
+}
+
+#userName {
+    padding-top: 30px;
+}
+
+#password {
+    padding-top: 20px;
+}
+
+#mainLogin {
+    max-width: 400px;
+    height: 300px;
+    border: solid;
+    border-radius: 25px;
+    border-color: yellow;
+    background-color: white;
+    margin: auto;
+}
+
+#textUserName {
+    box-sizing: border-box;
+    text-align: center;
+    height: 35px;
+    margin: auto;
+}
+
+#textPassword {
+    box-sizing: border-box;
+    text-align: center;
+    height: 35px;
+    margin: auto;
+}
+
+#showHeadder1 {
+    color: black;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+#description{
+    width: 50%
+}
