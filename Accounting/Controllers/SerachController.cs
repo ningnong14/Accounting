@@ -45,7 +45,6 @@ namespace Accounting.Controllers
             result.TotalDebit = cal.TotalDebit;
             result.TotalCredit = cal.TotalCredit;
             result.Balance = cal.Balance;
-
             return Ok(result);
         }
 
