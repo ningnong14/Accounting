@@ -4,5 +4,7 @@
     {
         public string code { get; set; }
         public string message { get; set; }
+        public string username { get; set; }
+
     }
 }
