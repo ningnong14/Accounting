@@ -18,3 +18,70 @@
 .cal .container .text_col .row {
     text-align: center;
 }
+
+#input_type {
+    margin-top: -10px;
+}
+
+    #input_type .col-3 input:focus-visible {
+        outline: none;
+        box-shadow: none;
+    }
+
+    #input_type .col-3 input {
+        border: 2px solid;
+        border-radius: 5px;
+        padding-left: 5px;
+    }
+
+    #input_type #code {
+        height: 28.5px;
+        width: 183px;
+        padding-top: 1px;
+        padding-bottom: 1px;
+        padding-right: 2px;
+    }
+
+    #input_type #input_dateTo {
+        height: 28.5px;
+        width: 183px;
+        padding-top: 1px;
+        padding-bottom: 1px;
+        padding-right: 2px;
+    }
+
+    #input_type #input_dateFrom {
+        height: 28.5px;
+        width: 183px;
+        padding-top: 1px;
+        padding-bottom: 1px;
+        padding-right: 2px;
+    }
+
+h3 {
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+.content_table .container .result_serach {
+    margin-top: 30px;
+}
+
+.cal .container .text_cal {
+    margin-top: 40px;
+}
+
+.cal .container .input_cal .row {
+    margin-top: -10px;
+}
+
+.cal .container .input_cal input:focus-visible {
+    outline: none;
+    box-shadow: none;
+}
+
+.cal .container .input_cal input {
+    border: 2px solid;
+    border-radius: 5px;
+    padding-left: 5px;
+}

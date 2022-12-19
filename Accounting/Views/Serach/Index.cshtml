@@ -1,54 +1,69 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width-device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie-edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <title>Layout</title>
-        <link rel="stylesheet" href="~/css/styleSerachPage.css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    </head>
-    <body>
-        <div class="serach_box">
-            <div class="headcontent">
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <p>Serach Accounting</p>
-                        </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width-device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>Layout</title>
+    <link rel="stylesheet" href="/css/styleSerachPage.css">
+    <!---Bootstrap5-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <!----TempusDominus-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.38.0/js/tempusdominus-bootstrap-4.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.38.0/css/tempusdominus-bootstrap-4.min.css" crossorigin="anonymous" />
+</head>
+<body>
+    <div class="serach_box">
+        <div class="headcontent">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h3>Serach Accounting</h3>
                     </div>
-                    <div class="row">
-                        <div class="col-4">
-                            <p>Serach inbox</p>
-                        </div>
-                        <div class="col-3">
-                            <p>id</p>
-                        </div>
-                        <div class="col-5">
-                            <p>DateTime</p>
-                        </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <p>Description</p>
                     </div>
-                    <div class="row">
-                        <div class="col-4">
-                            <input type="search" id="button_serach">
-                        </div>
-                        <div class="col-3">
-                            <input type="text" id="input_text">
-                        </div>
-                        <div class="col-5">
-                            <input type="date" id="input_date">
-                        </div>
+                    <div class="col-3">
+                        <p>Code</p>
+                    </div>
+                    <div class="col-3">
+                        <p>DateTimeTo</p>
+                    </div>
+                    <div class="col-3">
+                        <p>DateTimeFrom</p>
+                    </div>
+                </div>
+                <div class="row" id="input_type">
+                    <div class="col-3">
+                        <input type="search" id="button_serach">
+                    </div>
+                    <div class="col-3">
+                        <select name="code" id="code">
+                            <option value="volvo">Volvo</option>
+                            <option value="saab">Saab</option>
+                            <option value="opel">Opel</option>
+                            <option value="audi">Audi</option>
+                        </select>
+                    </div>
+                    <div class="col-3">
+                        <input type="date" id="input_dateTo">
+                    </div>
+                    <div class="col-3">
+                        <input type="date" id="input_dateFrom">
                     </div>
                 </div>
             </div>
-            <div class="content_table">
-                <div class="container">
-                    <div class="result_serach">Serach Result</div>
-                    <table class="table table-hover">
-                        <thead>
+        </div>
+        <div class="content_table">
+            <div class="container">
+                <div class="result_serach"><h4>Serach Result</h4></div>
+                <table class="table table-hover">
+                    <thead>
                         <tr>
                             <th scope="col">Id</th>
                             <th scope="col">TagVocher</th>
@@ -58,8 +73,8 @@
                             <th scope="col">Credit</th>
                             <th scope="col">Debit</th>
                         </tr>
-                        </thead>
-                        <tbody>
+                    </thead>
+                    <tbody>
                         <tr>
                             <th scope="row">1</th>
                             <td>00001</td>
@@ -92,47 +107,46 @@
                             <td colspan="1">10</td>
                             <td colspan="1">100</td>
                         </tr>
-                        </tbody>
-                    </table>
-                </div>
+                    </tbody>
+                </table>
             </div>
-            <div class="cal">
-                <div class="container">
-                    <div class="text_cal">
+        </div>
+        <div class="cal">
+            <div class="container">
+                <div class="text_cal">
+                    <div class="row">
+                        <div class="col-2">
+                        </div>
+                        <div class="col-3">
+                            <p>credit</p>
+                        </div>
+                        <div class="col-3">
+                            <p>debit</p>
+                        </div>
+                        <div class="col-3">
+                            <p>Sum Total</p>
+                        </div>
+                    </div>
+                    <div class="input_cal">
                         <div class="row">
                             <div class="col-2">
-
+                            </div>
+                            <div class="col-3" id="credit">
+                                <input type="text" name="credit" id="credit" disabled>
                             </div>
                             <div class="col-3">
-                                <p>credit</p>
+                                <input type="text" name="debit" id="debit" disabled>
                             </div>
                             <div class="col-3">
-                                <p>debit</p>
-                            </div>
-                            <div class="col-3">
-                                <p>Sum Total</p>
-                            </div>
-                        </div>
-                        <div class="input_cal">
-                            <div class="row">
-                                <div class="col-2">
-                                </div>
-                                <div class="col-3" id="credit">
-                                    <input type="text" name="credit" id="credit" disabled>
-                                </div>
-                                <div class="col-3">
-                                    <input type="text" name="debit" id="debit" disabled>
-                                </div>
-                                <div class="col-3">
-                                    <input type="text" name="total" id="total" disabled>
-                                </div>
+                                <input type="text" name="total" id="total" disabled>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </body>
+    </div>
+</body>
 </html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="~/js/serach.js"></script>
