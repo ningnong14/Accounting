@@ -49,7 +49,7 @@
                 if (data.code == "200") {
                     localStorage.setItem("Username", data.username);
                     console.log(baseURL());
-                    window.location.href = baseURL() + "/Serach";
+                    window.location.href = baseURL() + "/home";
                 }
                 console.log("LoginData", data); // แสดงข้อมูล JSON จาก then ข้างบน
             })
