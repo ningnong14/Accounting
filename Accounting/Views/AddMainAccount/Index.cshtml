@@ -20,7 +20,7 @@
                 <p>Create Main Acoount</p>
             </div>
             <div class="btn_code">
-                <button type="button" class="btn btn-primary btn-lg" id="add">Add Main Account</button>
+                <button type="button" class="btn btn-primary btn-lg" id="addMainAccount">Add Main Account</button>
             </div>
         </div>
     </section>
@@ -29,11 +29,13 @@
             <p>ResultAccount</p>
         </div>
         <table class="table table-hover">
-            <thead class="table-light">
+            <thead class="table-primary">
                 <tr>
                     <th scope="col">Id</th>
                     <th scope="col">MainAccount</th>
                     <th scope="col">Name</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Del</th>
                 </tr>
             </thead>
             <tbody>
@@ -41,27 +43,35 @@
                     <th scope="row">1</th>
                     <td>5001</td>
                     <td>ค่าบริการ</td>
+                    <td><button type="button">Edit</button></td>
+                    <td><button type="button">Del</button></td>
                 </tr>
             </tbody>
             <tbody>
                 <tr>
                     <th scope="row">2</th>
-                    <td>5001</td>
-                    <td>ค่าบริการ</td>
+                    <td>5002</td>
+                    <td>ค่าขนส่ง</td>
+                    <td><button type="button">Edit</button></td>
+                    <td><button type="button">Del</button></td>
                 </tr>
             </tbody>
             <tbody>
                 <tr>
                     <th scope="row">3</th>
-                    <td>5001</td>
-                    <td>ค่าบริการ</td>
+                    <td>5003</td>
+                    <td>ค่าไปรษณีย์</td>
+                    <td><button type="button">Edit</button></td>
+                    <td><button type="button">Del</button></td>
                 </tr>
             </tbody>
             <tbody>
                 <tr>
                     <th scope="row">4</th>
-                    <td>5001</td>
-                    <td>ค่าบริการ</td>
+                    <td>5004</td>
+                    <td>ค่าเดินทาง</td>
+                    <td><button type="button">Edit</button></td>
+                    <td><button type="button">Del</button></td>
                 </tr>
             </tbody>
         </table>
@@ -73,3 +83,7 @@
     </section>
 </body>
 </html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="~/js/common.js"></script>
+<script src="~/js/createMainAccount.js"></script>

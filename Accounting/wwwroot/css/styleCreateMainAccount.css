@@ -10,17 +10,21 @@ body {
     display: flex;
     margin-left: 40px;
     margin-top: 20px;
+    border-bottom: 2px solid red
 }
 
     .header .content {
         font-size: 40px;
         font-weight: 400;
+        width: 50%;
     }
 
     .header .btn_code {
-        position: absolute; /* จัดให้อยู่ในรูปซ้ายขวาต้องใช้ positon absoulte แล้วตามด้วย ด้านที่ต้องการ*/
-        left: 85%;
-        width: 300px;
+        display: flex;
+        position: relative;
+        width: 50%;
+        justify-content: end;
+        align-items: center;
     }
 
 .table_add {
@@ -29,7 +33,7 @@ body {
 }
 
     .table_add .add_result {
-        font-size: 20px;
+        font-size: 30px;
         font-weight: 400;
     }
 
@@ -52,4 +56,5 @@ body {
 
 .btn_code #add {
     background-color: green;
+    width: 300px;
 }
