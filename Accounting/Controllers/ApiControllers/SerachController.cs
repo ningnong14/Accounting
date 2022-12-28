@@ -7,6 +7,8 @@ using System.Data;
 
 namespace Accounting.Controllers.ApiControllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class SerachController : Controller
     {
         private readonly ISerachService _serachService;
