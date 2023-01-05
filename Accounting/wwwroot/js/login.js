@@ -8,9 +8,14 @@
                <input type="password" id="password" class="swal2-input" placeholder="Password">`,
         confirmButtonText: 'Sign in',
         focusConfirm: false,
+        allowOutsideClick: false,
         preConfirm: () => {
             login = Swal.getPopup().querySelector('#login').value
             password = Swal.getPopup().querySelector('#password').value
+            if (!login || !password) {
+                Swal.showValidationMessage(`Please enter login and password`)
+            }
+            return { login: "", password: ""}
         }
     }).then((result) => {
         url = baseURL() + `api/Login/ValidateUser`;

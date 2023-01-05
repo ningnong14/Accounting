@@ -13,9 +13,15 @@ $(document).ready(() => {
             html: `<input type="text" id="code" class="swal2-input" placeholder="Code">
                    <input type="text" id="name" class="swal2-input" placeholder="Name">`,
             confirmButtonText: 'confrim',
+            focusConfirm: false,
+            allowOutsideClick: false,
             preConfirm: () => {
                 codeAccount = Swal.getPopup().querySelector('#code').value
                 nameAccount = Swal.getPopup().querySelector('#name').value
+                if (!codeAccount || !nameAccount) {
+                    Swal.showValidationMessage(`Please Field your Code and Name`)
+                }
+                return { codeAccount: "", nameAccount: "" }
             }
         }).then((result) => {
             url = baseURL() + `api/AddMainAccount/GetDataByCode`;
