@@ -1,0 +1,60 @@
+﻿/* reset body */
+body {
+    margin: 0;
+    padding: 0;
+    left: 0;
+    top: 0;
+}
+
+.header {
+    display: flex;
+    margin-left: 40px;
+    margin-top: 20px;
+    border-bottom: 2px solid red
+}
+
+    .header .content {
+        font-size: 40px;
+        font-weight: 400;
+        width: 50%;
+    }
+
+    .header .btn_code {
+        display: flex;
+        position: relative;
+        width: 50%;
+        justify-content: end;
+        align-items: center;
+    }
+
+.table_add {
+    margin-top: 20px;
+    margin-left: 40px;
+}
+
+    .table_add .addRecord {
+        font-size: 30px;
+        font-weight: 400;
+    }
+
+    .table_add .table {
+        width: 95%;
+        align-items: center;
+    }
+
+.confirm {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 60px;
+}
+
+    .confirm #confirmRecord {
+        background-color: green;
+        width: 300px;
+    }
+
+.btn_code #add {
+    background-color: green;
+    width: 300px;
+}
