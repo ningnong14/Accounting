@@ -18,6 +18,13 @@ namespace Accounting.Controllers.ApiControllers
             _serachService = serachService;
         }
 
+        [HttpPost("SearchData")]
+        public async Task<IActionResult> SerachData([FromBody] ReqSearchModel data)
+        {
+
+            return Ok(200);
+        }
+
         [HttpPost("SerachResult")]
         public async Task<IActionResult> SerachResult([FromBody] int billId)
         {
