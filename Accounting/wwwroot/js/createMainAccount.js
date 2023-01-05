@@ -1,4 +1,4 @@
-﻿var list = [];
+var list = [];
 var mainCount = 1;
 var status = "";
 
@@ -55,7 +55,6 @@ $(document).ready(() => {
                             confirmButtonText: 'ตกลง'
                         }).then((result) => {
                             if (result.isConfirmed) {
-                                window.location.href = baseURL() + "/AddMainAccount";
                             }
                         })
                     }
