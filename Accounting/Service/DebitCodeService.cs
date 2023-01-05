@@ -18,6 +18,17 @@ namespace Accounting.Service
             return await _codeDebit.ListAsync();
         }
 
+        public async Task<CodeDebit> GetDataByCode(string code)
+        {
+            var searchSpec = new DebitCodeGetByCodeSpecification(code);
+            var data = await _codeDebit.SingleOrDefaultAsync(searchSpec);
+            if(data is null)
+            {
+                return null;
+            }
+            return data;
+        }
+
         public async Task InsertDataAsync(string code, string description)
         {
             CodeDebit detailData = new CodeDebit

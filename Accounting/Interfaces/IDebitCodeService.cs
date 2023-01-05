@@ -5,6 +5,7 @@ namespace Accounting.Interfaces
     public interface IDebitCodeService
     {
         Task<List<CodeDebit>> GetDataAsync();
+        Task<CodeDebit> GetDataByCode(string code);
         Task InsertDataAsync(string code, string description);
         Task InserDataAsync(CodeDebit data);
         Task UpdateDataAsync(int id, string code, string description);

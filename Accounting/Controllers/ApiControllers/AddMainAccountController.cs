@@ -22,15 +22,29 @@ namespace Accounting.Controllers.ApiControllers
             var data = await _debitCodeService.GetDataAsync();
             return Ok(data);
         }
-
+        [HttpPost("GetDataByCode")]
+        public async Task<IActionResult> GetDataByCode([FromBody] DebitCodeModel data)
+        {
+            if (ModelState.IsValid)
+            {
+                var checkDupilcate = await _debitCodeService.GetDataByCode(data.Code);
+                if(checkDupilcate is null)
+                {
+                    return Ok(data);
+                }
+                return BadRequest("Error DuplicateData(Codeซ้ำกัน)");
+            }
+            return BadRequest("Wrong Format");
+        }
         [HttpPost("AddDebitCode")]
         public async Task<IActionResult> AddDebit([FromBody] DebitCodeModel detail)
         {
             if (ModelState.IsValid)
             {
                 await _debitCodeService.InsertDataAsync(detail.Code, detail.Discription);
+                return Ok(detail);
             }
-            return Ok(detail);
+            return BadRequest("Wrong Format");
         }
         [HttpPost("UpdateData")]
         public async Task<IActionResult> UpdateDebit([FromBody] DebitCodeModel data)
