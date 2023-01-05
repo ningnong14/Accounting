@@ -1,4 +1,6 @@
-﻿$(document).ready(() => {
+﻿const dataMainAccount = {code:"",name:""};
+
+$(document).ready(() => {
     console.log("already function");
     $('#addMainAccount').on("click", function (event) {
         let codeAccount = "";
@@ -51,9 +53,26 @@
                 })
                 .then(function (data) {
                     if (data.code == "200") {
+                        dataMainAccount = { code: data.code, name: data.discription };
                         localStorage.setItem("Username", data.username);
                         console.log(baseURL());
                         window.location.href = baseURL() + "/AdddebitCode";
+                        //Table 
+                        var table = document.getElementById(table_MainAccount);
+                        for(var data in dataMainAccount)
+                        {
+                            var row = table.insertRow();
+                            var cell = row.insertCell();
+                            cell.innerHTML = data.count();
+                            cell = row.insertCell();
+                            cell.innerHTML = data.code;
+                            cell = row.insertCell();
+                            cell.innerHTML = data.discription;
+                            cell = row.insertCell();
+                            cell.insertHTML = '<td><button type="button">Edit</button></td>';
+                            cell = row.insertCell();
+                            cell.insertHTML = '<td><button type="button">Del</button></td>';
+                        }
                     }
                     console.log("LoginData", data); // แสดงข้อมูล JSON จาก then ข้างบน
                 })
