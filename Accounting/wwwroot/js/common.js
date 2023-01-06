@@ -1,6 +1,6 @@
 ﻿function baseURL() {
     var hostname = window.location.hostname;
-    console.log(hostname);
+    console.log("hostname", hostname);
     var baseURL = "";
     if (hostname.indexOf('localhost') > -1) {
         baseURL = "";
@@ -9,7 +9,7 @@
         var orgin = window.localtion.orgin;
         baseURL = origin + $('#baseURL').val();
     }
-    console.log(baseURL);
+    console.log("URL",baseURL);
     return baseURL;
 }
 
