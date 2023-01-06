@@ -5,8 +5,6 @@ $(document).ready(() => {
     console.log("Already Create Record");
     $('#addRecord').on("click", function (event) {
         dataMainAccount();
-        $('.descript').attr('disabled', true);
-        console.log("OK");
     })
 
     $('#confirmRecord').on("click", function () {
@@ -27,13 +25,10 @@ $(document).ready(() => {
     })
 
 });
-//TODO ตกแต่ง input box และเพิ่มข้อมูลเข้า dropdown อาจจะมีปรับMainAccount ให้รวมช่องกับ discription
+//TODO ตกแต่ง input box 
 function addRecord(data) {
-    for (let i = 0; i < data.length; i++) {
-        console.log("dataLoop",data[i]);
-    }
 
-    //1.เข้าถึง id ของ table  2.สร้าง row จาก id table  3.สร้าง cell 4.append แทรกเข้าไปในตาราง 
+    //STEP 1.เข้าถึง id ของ table  2.สร้าง row จาก id table  3.สร้าง cell 4.append แทรกเข้าไปในตาราง 
     var table = document.getElementById("recordAccount");
     var row = table.insertRow();
 
@@ -51,13 +46,21 @@ function addRecord(data) {
     var inputVocher = row.insertCell();
     inputVocher.appendChild(vocher);
 
+    // Ex 5001 ค่าน้ำมัน
     var mainAccount = document.createElement('select')
     mainAccount.name = "codeAcc";
     mainAccount.id = "mainAccount" + count;
-    mainAccount.options = "55555";
     var dropdownMainAcc = row.insertCell();
     dropdownMainAcc.appendChild(mainAccount);
 
+    // Jquery ในการ เพิ่ม option
+    for (let i = 0; i < data.length; i++) {
+        $('#mainAccount' + count).append(`<option value="${i}">
+                                       ${data[i].code + " " + data[i].description}
+                                  </option>`);
+    }
+
+    //Ex กรอกข้อความเสริมจะมีหรือไม่มีก็ได้ เช่น ค่าน้ำมันรถของเจ้านาย 8321กข 
     var description = document.createElement('input');
     description.type = "text"
     description.className = "descript";
@@ -79,6 +82,7 @@ function addRecord(data) {
     var inputcredit = row.insertCell();
     inputcredit.appendChild(credit);
 }
+
 function dataMainAccount() {
     console.log("call dataMainAccount");
     url = baseURL() + `api/AddMainAccount/GetAllData`;
