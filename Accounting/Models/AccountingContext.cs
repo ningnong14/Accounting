@@ -19,6 +19,8 @@ public partial class AccountingContext : DbContext
 
     public virtual DbSet<CodeDebit> CodeDebits { get; set; }
 
+    public virtual DbSet<RecordAccounting> RecordAccountings { get; set; }
+
     public virtual DbSet<UserLogin> UserLogins { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -62,6 +64,33 @@ public partial class AccountingContext : DbContext
             entity.Property(e => e.Description)
                 .HasMaxLength(50)
                 .HasColumnName("DESCRIPTION");
+        });
+
+        modelBuilder.Entity<RecordAccounting>(entity =>
+        {
+            entity.HasKey(e => e.TagVoucher);
+
+            entity.ToTable("RECORD_ACCOUNTING");
+
+            entity.Property(e => e.TagVoucher).HasColumnName("TAG_VOUCHER");
+            entity.Property(e => e.CodeVoucher)
+                .HasMaxLength(50)
+                .HasColumnName("CODE_VOUCHER");
+            entity.Property(e => e.Credit).HasColumnName("CREDIT");
+            entity.Property(e => e.DateTimeFrom)
+                .HasColumnType("datetime")
+                .HasColumnName("DATE_TIME_FROM");
+            entity.Property(e => e.DateTimeTo)
+                .HasColumnType("datetime")
+                .HasColumnName("DATE_TIME_TO");
+            entity.Property(e => e.Debit).HasColumnName("DEBIT");
+            entity.Property(e => e.Description)
+                .IsRequired()
+                .HasMaxLength(50)
+                .HasColumnName("DESCRIPTION");
+            entity.Property(e => e.MainAccount)
+                .HasMaxLength(50)
+                .HasColumnName("MAIN_ACCOUNT");
         });
 
         modelBuilder.Entity<UserLogin>(entity =>
