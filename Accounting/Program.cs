@@ -16,6 +16,7 @@ builder.Services.AddScoped<IDebitCodeService, DebitCodeService>();
 builder.Services.AddScoped<ISerachService, SerachService>();
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IRecordAccountingService, RecordAccountingService>();
+builder.Services.AddScoped<ICalculateService, CalculateService>();
 
 // Add service Swageer
 builder.Services.AddEndpointsApiExplorer();

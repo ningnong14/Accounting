@@ -9,11 +9,11 @@ namespace Accounting.Controllers.ApiControllers
     public class RecordAccountingController : Controller
     {
         private readonly IRecordAccountingService _recordAccount;
-        private readonly ISerachService _serachService;
-        public RecordAccountingController(IRecordAccountingService recordAccount, ISerachService serachService)
+        private readonly ICalculateService _calculateService;
+        public RecordAccountingController(IRecordAccountingService recordAccount, ICalculateService calculateService)
         {
             _recordAccount = recordAccount;
-            _serachService = serachService;
+            _calculateService = calculateService;
         }
 
         [HttpPost("InsertRecordAccount")]
@@ -38,11 +38,12 @@ namespace Accounting.Controllers.ApiControllers
                 return BadRequest(ex);
             }
         }
-        [HttpPost("CalDebit")]
-        public async Task<IActionResult> CalDebit([FromBody] List<ReqAccountRecordModel> data)
+        [HttpPost("CalculateService")]
+        public IActionResult CalDebit([FromBody] List<ReqAccountRecordModel> data)
         {
-            
-            return Ok();
+            if(data == null) { return BadRequest(); }
+            var calData = _calculateService.CheckCalculateDebitAndCredit(data);
+            return Ok(calData);
         }
     }
 }
