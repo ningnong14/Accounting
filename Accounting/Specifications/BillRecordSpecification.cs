@@ -10,6 +10,9 @@ namespace Accounting.Specifications
         {
             Query.Where(noBill => noBill.BillId == billId);
         }
-
+        public BillRecordSpecification(DateTime dateTimeto,DateTime dateTimeFrom)
+        {
+            Query.Where(Bill => Bill.Date <= dateTimeFrom);
+        }
     }
 }

@@ -11,25 +11,44 @@ namespace Accounting.Controllers.ApiControllers
     [ApiController]
     public class SerachController : Controller
     {
-        private readonly ISerachService _serachService;
+        private readonly ISearchService _searchService;
 
-        public SerachController(ISerachService serachService)
+        public SerachController(ISearchService searchService)
         {
-            _serachService = serachService;
+            _searchService = searchService;
         }
 
+        //Default SerachData + SearchBy DateTimeTo-DateTime-From , BillID
         [HttpPost("SearchData")]
         public async Task<IActionResult> SerachData([FromBody] ReqSearchModel data)
         {
+            try
+            {
+                //Request Serach null = default SearchAll
+                //TODO ขาดคิดเพิ่มเงื่อนไขการ search ผ่านวันที่ , billId , description
+                if(data.DateTimeTo.ToString() is not null && data.DateTimeFrom.ToString() is not null)
+                {
+                    var searchData = await _searchService.GetData(data.DateTimeTo, data.DateTimeFrom);
+                }
+                else
+                {
+                    var searchData = await _searchService.GetData();
+                }
 
-            return Ok(200);
+                return Ok(200);
+
+            }catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
+        //SerachDataById
         [HttpPost("SerachResult")]
         public async Task<IActionResult> SerachResult([FromBody] int billId)
         {
-            var data = await _serachService.GetData(billId);
-            var cal = await _serachService.CalculateSum(data);
+            var data = await _searchService.GetData(billId);
+            var cal = await _searchService.CalculateSum(data);
             ResSearchResult result = new ResSearchResult();
             List<SearchData> resSearchData = new List<SearchData>();
             foreach (var item in data)
@@ -58,7 +77,7 @@ namespace Accounting.Controllers.ApiControllers
         [HttpPost("ExportExcel")]
         public async Task<IActionResult> ExportExcel([FromBody] int billId)
         {
-            var data = await _serachService.GetData(billId);
+            var data = await _searchService.GetData(billId);
             DataTable table = (DataTable)JsonConvert.DeserializeObject(JsonConvert.SerializeObject(data), (typeof(DataTable)));
             Stream stream = new MemoryStream();
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;

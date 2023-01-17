@@ -12,7 +12,7 @@ using System.Data;
 
 namespace Accounting.Service
 {
-    public class SerachService : ISerachService
+    public class SerachService : ISearchService
     {
         private readonly IRepository<BillRecord> _billRecordRepository;
 
@@ -25,10 +25,21 @@ namespace Accounting.Service
 
         public async Task<List<BillRecord>> GetData(int billId)
         {
-            var Serachdata = new BillRecordSpecification(billId);
-            var data = await _billRecordRepository.ListAsync(Serachdata);
+            var serachData = new BillRecordSpecification(billId);
+            var data = await _billRecordRepository.ListAsync(serachData);
             return data;
  
+        }
+
+        public async Task<List<BillRecord>> GetData()
+        {
+            return await _billRecordRepository.ListAsync();
+        }
+
+        public async Task<List<BillRecord>> GetData(DateTime dateTimeTo, DateTime dateTimeFrom)
+        {
+            var searchData = new BillRecordSpecification(dateTimeTo, dateTimeFrom);
+            return await _billRecordRepository.ListAsync(searchData);
         }
 
         public async Task<ResCalculateModel> CalculateSum(List<BillRecord> billData)

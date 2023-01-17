@@ -13,7 +13,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(AccountingRepository<>));
 
 builder.Services.AddScoped<IDebitCodeService, DebitCodeService>();
-builder.Services.AddScoped<ISerachService, SerachService>();
+builder.Services.AddScoped<ISearchService, SerachService>();
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IRecordAccountingService, RecordAccountingService>();
 builder.Services.AddScoped<ICalculateService, CalculateService>();
