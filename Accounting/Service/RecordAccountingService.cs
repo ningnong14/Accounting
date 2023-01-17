@@ -13,22 +13,24 @@ namespace Accounting.Service
             _recordAccRepository= recordAccRepositoty;
         }
 
-        public async Task<string> InsertData(List<ReqAccountRecordModel> reqData)
+        public async Task<List<RecordAccounting>> InsertData(List<ReqAccountRecordModel> reqData)
         {
+            List<RecordAccounting> insertData = new List<RecordAccounting>();
             foreach (var req in reqData)
             {
-                RecordAccounting recordData1 = new RecordAccounting();
-                recordData1.Description = req.Description;
-                recordData1.DateTimeTo = req.DateTimeTo;
-                recordData1.MainAccount = req.MainAccount;
-                recordData1.Debit = req.Debit;
-                recordData1.Credit = req.Credit;
-                recordData1.DateTimeFrom = DateTime.Now;
-                recordData1.CodeVoucher = "GSJ";
+                RecordAccounting recordData = new RecordAccounting();
+                recordData.Description = req.Description;
+                recordData.DateTimeTo = req.DateTimeTo;
+                recordData.MainAccount = req.MainAccount;
+                recordData.Debit = req.Debit;
+                recordData.Credit = req.Credit;
+                recordData.DateTimeFrom = DateTime.Now;
+                recordData.CodeVoucher = "GSJ";
 
-                await _recordAccRepository.AddAsync(recordData1);
+                await _recordAccRepository.AddAsync(recordData);
+                insertData.Add(recordData);
             }
-            return "Ok";
+            return insertData;
         }
     }
 }
