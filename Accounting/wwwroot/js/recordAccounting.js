@@ -21,7 +21,8 @@ $(document).ready(() => {
             };
             data.push(dataRecord);
         }
-        console.log("dataRecord",data);
+        console.log("dataRecord", data);
+        saveRecordData(data);
     })
 
 });
@@ -107,15 +108,9 @@ function dataMainAccount() {
         })
 }
 //TODO: เขียนเส้น API insertData 
-function saveRecordData() {
+function saveRecordData(dataRecord) {
     console.log("callSaveData");
-    url = baseURL() + `api/RecordAccounting/insertData`;
-    data = {
-        code: codeAccount,
-        discription: nameAccount
-    };
-    console.log("code", codeAccount);
-    console.log("name", nameAccount);
+    url = baseURL() + `api/RecordAccounting/InsertRecordAccount`;
     fetch(url, {
         method: "POST",
         headers: [
@@ -123,34 +118,13 @@ function saveRecordData() {
             ["Content-Type", "text/plain"]
         ],
         credentials: "include",
-        body: JSON.stringify({
-            code: codeAccount,
-            discription: nameAccount
-        }),
-    })
+        body: JSON.stringify(dataRecord),
+        })
         .then(function (response) {
             console.log(response);
-            status = response.status;
-            if (response.ok == false) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Add Fail',
-                    text: 'Code Duplicate',
-                    confirmButtonColor: '#3085d6',
-                    confirmButtonText: 'ตกลง'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                    }
-                })
-            }
             return response.json() // แปลงข้อมูลที่ได้เป็น json
         })
         .then(function (data) {
             console.log("ResData", data);
-            localStorage.setItem("Username", data.username);
-            if (status == 200) {
-                loadDataTable(data);
-                console.log("Success");
-            }
         })
 }
