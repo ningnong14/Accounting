@@ -12,13 +12,14 @@
     }
     public class SearchData
     {
-        public int? BillId { get; set; }
-        public string Date { get; set; }
-        public string Voucher { get; set; }
+        public int? tagVoucher { get; set; }
+        public string codeVoucher { get; set; }
         public string MainAccount { get; set; }
         public string Description { get; set; }
-        public int? Debit { get; set; }
-        public int? Credit { get; set; }
+        public int? credit { get; set; }
+        public int? debit { get; set; }
+        public DateTime dateTimeTo { get; set; }
+        public DateTime dateTimeFrom { get; set; }
       
     }
 }

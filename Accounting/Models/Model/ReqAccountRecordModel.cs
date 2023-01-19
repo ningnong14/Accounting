@@ -2,11 +2,12 @@
 {
     public class ReqAccountRecordModel
     {
-        public DateTime DateTimeTo { get; set; }
-        public string MainAccount { get; set;}
-        public string Description { get; set;}
-        public int Debit { get; set;}
-        public int Credit { get; set;}
+        public string dateTime { get; set; }
+        public string mainAccount { get; set;}
+        public string description { get; set;}
+        public int debit { get; set;}
+        public int credit { get; set;}
+        public string voucher { get; set;}
 
     }
 }

@@ -56,7 +56,7 @@ function addRecord(data) {
 
     // Jquery ในการ เพิ่ม option
     for (let i = 0; i < data.length; i++) {
-        $('#mainAccount' + count).append(`<option value="${i}">
+        $('#mainAccount' + count).append(`<option value="${data[i].code}">
                                        ${data[i].code + " " + data[i].description}
                                   </option>`);
     }

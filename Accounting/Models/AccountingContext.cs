@@ -24,6 +24,7 @@ public partial class AccountingContext : DbContext
     public virtual DbSet<UserLogin> UserLogins { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Server=DESKTOP-PEG8U1S;Database=Accounting;Trusted_Connection=True;Encrypt=False");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -77,11 +78,8 @@ public partial class AccountingContext : DbContext
                 .HasMaxLength(50)
                 .HasColumnName("CODE_VOUCHER");
             entity.Property(e => e.Credit).HasColumnName("CREDIT");
-            entity.Property(e => e.DateTimeFrom)
-                .HasColumnType("datetime")
-                .HasColumnName("DATE_TIME_FROM");
             entity.Property(e => e.DateTimeTo)
-                .HasColumnType("datetime")
+                .HasColumnType("date")
                 .HasColumnName("DATE_TIME_TO");
             entity.Property(e => e.Debit).HasColumnName("DEBIT");
             entity.Property(e => e.Description)

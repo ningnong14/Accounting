@@ -12,8 +12,8 @@ namespace Accounting.Service
             int compareCreditDebit = 0;
             foreach (var record in cal)
             {
-                record.Credit += curCredit;
-                record.Debit += curDebit;
+                record.credit += curCredit;
+                record.debit += curDebit;
             }
             compareCreditDebit = curCredit - curDebit;
             ResCalculateModel resCalculate = new ResCalculateModel()

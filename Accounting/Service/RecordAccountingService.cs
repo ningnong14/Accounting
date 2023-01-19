@@ -2,6 +2,7 @@
 using Accounting.Models;
 using Accounting.Models.Model;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using System.Globalization;
 
 namespace Accounting.Service
 {
@@ -18,13 +19,13 @@ namespace Accounting.Service
             List<RecordAccounting> insertData = new List<RecordAccounting>();
             foreach (var req in reqData)
             {
+                DateTime convertDateTime = Convert.ToDateTime(req.dateTime);
                 RecordAccounting recordData = new RecordAccounting();
-                recordData.Description = req.Description;
-                recordData.DateTimeTo = req.DateTimeTo;
-                recordData.MainAccount = req.MainAccount;
-                recordData.Debit = req.Debit;
-                recordData.Credit = req.Credit;
-                recordData.DateTimeFrom = DateTime.Now;
+                recordData.Description = req.description;
+                recordData.DateTimeTo = convertDateTime;
+                recordData.MainAccount = req.mainAccount;
+                recordData.Debit = req.debit;
+                recordData.Credit = req.credit;
                 recordData.CodeVoucher = "GSJ";
 
                 await _recordAccRepository.AddAsync(recordData);

@@ -15,10 +15,12 @@ namespace Accounting.Service
     public class SerachService : ISearchService
     {
         private readonly IRepository<BillRecord> _billRecordRepository;
+        private readonly IRepository<RecordAccounting> _recordAccounting;
 
-        public SerachService(IRepository<BillRecord> billRecordRepository) 
+        public SerachService(IRepository<BillRecord> billRecordRepository,IRepository<RecordAccounting> recordAccounting) 
         {
             _billRecordRepository = billRecordRepository;
+            _recordAccounting = recordAccounting;
         }
 
         //TODO 1. Cal Debit , Cal Credit , Balance 2. show data from query 3.export excel
@@ -31,18 +33,18 @@ namespace Accounting.Service
  
         }
 
-        public async Task<List<BillRecord>> GetData()
+        public async Task<List<RecordAccounting>> GetData()
         {
-            return await _billRecordRepository.ListAsync();
+            return await _recordAccounting.ListAsync();
         }
 
-        public async Task<List<BillRecord>> GetData(DateTime dateTimeTo, DateTime dateTimeFrom)
+        public async Task<List<RecordAccounting>> GetData(DateTime dateTimeTo, DateTime dateTimeFrom)
         {
-            var searchData = new BillRecordSpecification(dateTimeTo, dateTimeFrom);
-            return await _billRecordRepository.ListAsync(searchData);
+            var searchData = new BillAccountSpecification(dateTimeTo,dateTimeFrom);
+            return await _recordAccounting.ListAsync(searchData);
         }
 
-        public async Task<ResCalculateModel> CalculateSum(List<BillRecord> billData)
+        public async Task<ResCalculateModel> CalculateSum(List<RecordAccounting> billData)
         {
             try
             {

@@ -28,22 +28,44 @@ namespace Accounting.Controllers.ApiControllers
                 //TODO ขาดคิดเพิ่มเงื่อนไขการ search ผ่านวันที่ , billId , description
                 if(data.DateTimeTo.ToString() is not null && data.DateTimeFrom.ToString() is not null)
                 {
-                    var searchData = await _searchService.GetData(data.DateTimeTo, data.DateTimeFrom);
+                    var dataSearch = await _searchService.GetData(data.DateTimeTo, data.DateTimeFrom);
+                    var cal = await _searchService.CalculateSum(dataSearch);
+                    ResSearchResult result = new ResSearchResult();
+                    List<SearchData> resSearchData = new List<SearchData>();
+                    foreach (var item in dataSearch)
+                    {
+                        resSearchData.Add(new SearchData
+                        {
+                            tagVoucher= item.TagVoucher,
+                            codeVoucher= item.CodeVoucher,
+                            MainAccount= item.MainAccount,
+                            Description= item.Description,
+                            credit= item.Credit,
+                            debit= item.Debit,
+                            dateTimeTo= item.DateTimeTo,
+                        });
+                    }
+                    result.status = "200";
+                    result.messageCode = "OK";
+                    result.message = "Call Service SerachResult Success";
+                    result.data = resSearchData;
+                    result.TotalDebit = cal.TotalDebit;
+                    result.TotalCredit = cal.TotalCredit;
+                    result.Balance = cal.Balance;
+                    return Ok(result);
                 }
-                else
+                else //เผื่อกรณี defalut serach All 
                 {
-                    var searchData = await _searchService.GetData();
+                    var dataSearch = await _searchService.GetData();
+                    return Ok(dataSearch);
                 }
-
-                return Ok(200);
-
             }catch(Exception ex)
             {
                 return BadRequest(ex.Message);
             }
         }
 
-        //SerachDataById
+       /* //SerachDataById
         [HttpPost("SerachResult")]
         public async Task<IActionResult> SerachResult([FromBody] int billId)
         {
@@ -73,11 +95,11 @@ namespace Accounting.Controllers.ApiControllers
             result.Balance = cal.Balance;
             return Ok(result);
         }
-
+*/
         [HttpPost("ExportExcel")]
-        public async Task<IActionResult> ExportExcel([FromBody] int billId)
+        public async Task<IActionResult> ExportExcel([FromBody]ReqSearch dataSearch)
         {
-            var data = await _searchService.GetData(billId);
+            var data = await _searchService.GetData(dataSearch.dateTimeTo, dataSearch.dateTimeFrom);
             DataTable table = (DataTable)JsonConvert.DeserializeObject(JsonConvert.SerializeObject(data), (typeof(DataTable)));
             Stream stream = new MemoryStream();
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;

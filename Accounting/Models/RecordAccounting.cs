@@ -18,6 +18,4 @@ public partial class RecordAccounting
     public int? Debit { get; set; }
 
     public DateTime DateTimeTo { get; set; }
-
-    public DateTime DateTimeFrom { get; set; }
 }
