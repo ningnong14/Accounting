@@ -36,7 +36,8 @@ namespace Accounting.Controllers.ApiControllers
                 res.message = "Insert Success";
                 res.result = insertdata;
                 return Ok(res);
-            }catch(Exception ex)
+            }
+            catch(Exception ex)
             {
                 return BadRequest(ex);
             }

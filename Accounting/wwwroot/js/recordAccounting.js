@@ -26,14 +26,20 @@ $(document).ready(() => {
             data.push(dataRecord);
         }
         console.log("dataRecord", data);
-        console.log(Calcredit);
-        console.log(Caldebit);
         //เช็ค Debit Credit ต้องเท่ากัน ถึงจะบันทึกบัญชีได้
         checkDebitCredit(Calcredit, Caldebit);
-        console.log(checkDebitCredit(Calcredit, Caldebit));
         if (checkDebitCredit(Calcredit, Caldebit)) {
             // บันทึกบัญชี
             saveRecordData(data);
+            //reset data
+            data = [];
+        }
+        else
+        {
+            Swal.fire(
+                'Credit != Debit',
+                'Cant Save Accounting'
+            )
             data = [];
         }
     })
@@ -145,6 +151,9 @@ function checkDebitCredit(Calcredit, Caldebit) {
     console.log("CheckCreditDebit")
     console.log(Calcredit);
     console.log(Caldebit);
+    //TODO สร้างปุ่มแสดง ยอดรวม Credit Debit
+    $(".showCredit").append('<input type="text" value=' + $('#div1').html() + '>');
+    $(".showDebit").append('<input type="text" value=' + $('#div1').html() + '>');
     if (Calcredit != Caldebit) {
         return false;
     }
