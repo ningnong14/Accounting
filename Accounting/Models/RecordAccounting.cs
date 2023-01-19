@@ -5,6 +5,8 @@ namespace Accounting.Models;
 
 public partial class RecordAccounting
 {
+    public int Id { get; set; }
+
     public int TagVoucher { get; set; }
 
     public string CodeVoucher { get; set; }

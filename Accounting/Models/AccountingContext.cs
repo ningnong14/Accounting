@@ -21,10 +21,13 @@ public partial class AccountingContext : DbContext
 
     public virtual DbSet<RecordAccounting> RecordAccountings { get; set; }
 
+    public virtual DbSet<TagVoucher> TagVouchers { get; set; }
+
     public virtual DbSet<UserLogin> UserLogins { get; set; }
 
+    public virtual DbSet<ViewTest> ViewTests { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Server=DESKTOP-PEG8U1S;Database=Accounting;Trusted_Connection=True;Encrypt=False");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -69,11 +72,9 @@ public partial class AccountingContext : DbContext
 
         modelBuilder.Entity<RecordAccounting>(entity =>
         {
-            entity.HasKey(e => e.TagVoucher);
-
             entity.ToTable("RECORD_ACCOUNTING");
 
-            entity.Property(e => e.TagVoucher).HasColumnName("TAG_VOUCHER");
+            entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.CodeVoucher)
                 .HasMaxLength(50)
                 .HasColumnName("CODE_VOUCHER");
@@ -89,6 +90,19 @@ public partial class AccountingContext : DbContext
             entity.Property(e => e.MainAccount)
                 .HasMaxLength(50)
                 .HasColumnName("MAIN_ACCOUNT");
+            entity.Property(e => e.TagVoucher).HasColumnName("TAG_VOUCHER");
+        });
+
+        modelBuilder.Entity<TagVoucher>(entity =>
+        {
+            entity.HasKey(e => e.TagVoucher1);
+
+            entity.ToTable("TAG_VOUCHER");
+
+            entity.Property(e => e.TagVoucher1).HasColumnName("TagVoucher");
+            entity.Property(e => e.DateTime)
+                .HasColumnType("date")
+                .HasColumnName("dateTime");
         });
 
         modelBuilder.Entity<UserLogin>(entity =>
@@ -116,6 +130,17 @@ public partial class AccountingContext : DbContext
             entity.Property(e => e.UpdateDate)
                 .HasColumnType("datetime")
                 .HasColumnName("UPDATE_DATE");
+        });
+
+        modelBuilder.Entity<ViewTest>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("View_test");
+
+            entity.Property(e => e.BillId)
+                .ValueGeneratedOnAdd()
+                .HasColumnName("BILL_ID");
         });
 
         OnModelCreatingPartial(modelBuilder);
