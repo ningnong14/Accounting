@@ -72,9 +72,11 @@ public partial class AccountingContext : DbContext
 
         modelBuilder.Entity<RecordAccounting>(entity =>
         {
+            entity.HasKey(e => e.IdTransaction);
+
             entity.ToTable("RECORD_ACCOUNTING");
 
-            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.IdTransaction).HasColumnName("ID_TRANSACTION");
             entity.Property(e => e.CodeVoucher)
                 .HasMaxLength(50)
                 .HasColumnName("CODE_VOUCHER");
