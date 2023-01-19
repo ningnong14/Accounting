@@ -9,20 +9,33 @@ $(document).ready(() => {
 
     $('#confirmRecord').on("click", function () {
         console.log("loop", count)
+        let Caldebit = 0;
+        let Calcredit = 0;
         for (var i = 1; i <= count-1; i++)
         {
             let dataRecord = {
                 dateTime: $('#dateTime' + i).val(),
-                vocher: $('#voucher' + i).val(),
+                voucher: $('#voucher' + i).val(),
                 mainAccount: $('#mainAccount' + i).val(),
                 description: $('#descript' + i).val(),
                 debit: $('#debit' + i).val(),
                 credit: $('#credit' + i).val(),
             };
+            Calcredit += parseInt(dataRecord.credit);
+            Caldebit += parseInt(dataRecord.debit);
             data.push(dataRecord);
         }
         console.log("dataRecord", data);
-        saveRecordData(data);
+        console.log(Calcredit);
+        console.log(Caldebit);
+        //เช็ค Debit Credit ต้องเท่ากัน ถึงจะบันทึกบัญชีได้
+        checkDebitCredit(Calcredit, Caldebit);
+        console.log(checkDebitCredit(Calcredit, Caldebit));
+        if (checkDebitCredit(Calcredit, Caldebit)) {
+            // บันทึกบัญชี
+            saveRecordData(data);
+            data = [];
+        }
     })
 
 });
@@ -127,4 +140,13 @@ function saveRecordData(dataRecord) {
         .then(function (data) {
             console.log("ResData", data);
         })
+}
+function checkDebitCredit(Calcredit, Caldebit) {
+    console.log("CheckCreditDebit")
+    console.log(Calcredit);
+    console.log(Caldebit);
+    if (Calcredit != Caldebit) {
+        return false;
+    }
+    return true;
 }

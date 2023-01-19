@@ -28,7 +28,10 @@ namespace Accounting.Controllers.ApiControllers
                     res.message = "Error Cant InsertData";
                     return BadRequest(data);
                 }
-                var insertdata = await _recordAccount.InsertData(data);
+                //ดึงเลข Tag_VOUCHER ในแต่ละครั้งของการบันทึก   1 Voucher จะมี กี่ transaction ก็ได้ และ การบันทึกทุกครั้ง debit = credit(เช็คจากหน้าบ้าน)
+                var getTagVoucher = await _recordAccount.GetTagVoucher();
+                // insert ข้อมูลโดยอิงจาก transactionที่ส่งเข้ามา
+                var insertdata = await _recordAccount.InsertData(data,getTagVoucher.TagVoucher1);
                 res.status = "200";
                 res.message = "Insert Success";
                 res.result = insertdata;
