@@ -9,8 +9,10 @@ $(document).ready(() => {
 
     $('#confirmRecord').on("click", function () {
         console.log("loop", count)
-        let Caldebit = 0;
-        let Calcredit = 0;
+        let caldebit = 0;
+        let calcredit = 0;
+        let difference = 0;
+        
         for (var i = 1; i <= count-1; i++)
         {
             let dataRecord = {
@@ -21,14 +23,15 @@ $(document).ready(() => {
                 debit: $('#debit' + i).val(),
                 credit: $('#credit' + i).val(),
             };
-            Calcredit += parseInt(dataRecord.credit);
-            Caldebit += parseInt(dataRecord.debit);
+            calcredit += parseInt(dataRecord.credit);
+            caldebit += parseInt(dataRecord.debit);
             data.push(dataRecord);
         }
         console.log("dataRecord", data);
+        difference = caldebit - calcredit;
         //เช็ค Debit Credit ต้องเท่ากัน ถึงจะบันทึกบัญชีได้
-        checkDebitCredit(Calcredit, Caldebit);
-        if (checkDebitCredit(Calcredit, Caldebit)) {
+        checkDebitCredit(calcredit, caldebit);
+        if (checkDebitCredit(calcredit, caldebit)) {
             // บันทึกบัญชี
             saveRecordData(data);
             //reset data
@@ -36,18 +39,20 @@ $(document).ready(() => {
         }
         else
         {
-            Swal.fire(
-                'Credit != Debit',
-                'Cant Save Accounting'
-            )
+            Swal.fire({
+                icon: 'error',
+                title: 'Cant Save Accounting',
+                html: 'Debit = ' + caldebit + '<br></br>' +
+                    'Credit = ' + calcredit + '<br></br>' +
+                    'CalDebitCredit =' + difference,
+            })
             data = [];
         }
     })
 
 });
-//TODO ตกแต่ง input box 
 function addRecord(data) {
-
+    console.log("Start AddRecord")
     //STEP 1.เข้าถึง id ของ table  2.สร้าง row จาก id table  3.สร้าง cell 4.append แทรกเข้าไปในตาราง 
     var table = document.getElementById("recordAccount");
     var row = table.insertRow();
@@ -92,6 +97,7 @@ function addRecord(data) {
     debit.type = "text";
     debit.className = "debit";
     debit.id = "debit" + count;
+    debit.value = 0;
     var inputdebit = row.insertCell();
     inputdebit.appendChild(debit);
 
@@ -99,6 +105,7 @@ function addRecord(data) {
     credit.type = "text";
     credit.className = "credit";
     credit.id = "credit" + count++;
+    credit.value = 0;
     var inputcredit = row.insertCell();
     inputcredit.appendChild(credit);
 }
@@ -147,14 +154,12 @@ function saveRecordData(dataRecord) {
             console.log("ResData", data);
         })
 }
-function checkDebitCredit(Calcredit, Caldebit) {
+function checkDebitCredit(calcredit, caldebit) {
     console.log("CheckCreditDebit")
-    console.log(Calcredit);
-    console.log(Caldebit);
+    console.log(calcredit);
+    console.log(caldebit);
     //TODO สร้างปุ่มแสดง ยอดรวม Credit Debit
-    $(".showCredit").append('<input type="text" value=' + $('#div1').html() + '>');
-    $(".showDebit").append('<input type="text" value=' + $('#div1').html() + '>');
-    if (Calcredit != Caldebit) {
+    if (calcredit != caldebit) {
         return false;
     }
     return true;
