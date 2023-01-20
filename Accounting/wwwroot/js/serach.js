@@ -1,4 +1,6 @@
 ﻿$(document).ready(() => {
+    $('.content_table').hide();
+    $('.cal').hide();
     $('#buttonSearch').click(function () {
         var serachResult = {
             NameCompany: $('#nameCompany').val(),
