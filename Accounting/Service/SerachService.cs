@@ -38,9 +38,11 @@ namespace Accounting.Service
             return await _recordAccounting.ListAsync();
         }
 
-        public async Task<List<RecordAccounting>> GetData(DateTime dateTimeTo, DateTime dateTimeFrom)
+        public async Task<List<RecordAccounting>> GetData(string dateTimeTo, string dateTimeFrom)
         {
-            var searchData = new BillAccountSpecification(dateTimeTo,dateTimeFrom);
+            DateTime convertDateTimeTo = Convert.ToDateTime(dateTimeTo);
+            DateTime convertDateTimeFrom = Convert.ToDateTime(dateTimeFrom);
+            var searchData = new BillAccountSpecification(convertDateTimeTo, convertDateTimeFrom);
             return await _recordAccounting.ListAsync(searchData);
         }
 

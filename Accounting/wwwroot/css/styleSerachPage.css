@@ -117,3 +117,10 @@ h3 {
     margin-left: auto;
     margin-right: auto;
 }
+
+.focusErrorBox{
+    border-color: red !important;
+}
+.focusErrorMsg{
+    color:red;
+}

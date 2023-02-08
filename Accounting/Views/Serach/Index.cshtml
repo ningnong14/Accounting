@@ -28,24 +28,19 @@
                     <div class="col-3">
                         <p>MainAccount</p>
                     </div>
-                    <div class="col-3">
-                        <p>DateTimeTo</p>
+                    <div class="col-3" id="date_to">
+                        <p>DateTimeTo *</p>
                     </div>
-                    <div class="col-3">
-                        <p>DateTimeFrom</p>
+                    <div class="col-3" id="date_from">
+                        <p>DateTimeFrom *</p>
                     </div>
                 </div>
                 <div class="row" id="input_type">
                     <div class="col-3">
-                        <input type="search" id="button_serach">
+                        <input type="search" id="input_serach">
                     </div>
                     <div class="col-3">
-                        <select name="code" id="code">
-                            <option value="volvo">5001 ค่าเดินทาง</option>
-                            <option value="saab">5002 ค่าน้ำมัน</option>
-                            <option value="opel">5003 ค่าเอกสาร</option>
-                            <option value="audi">5004 ค่าทางด่วน</option>
-                        </select>
+                        <select name="code" id="code"></select>
                     </div>
                     <div class="col-3">
                         <input type="date" id="input_dateTo">
@@ -55,7 +50,7 @@
                     </div>
                 </div>
                 <div class="row" id="button">
-                    <div class="col-6" id="AB">
+                    <div class="col-6" id="button_serachAcc">
                         <button class="btn btn-primary" type="button" id="button_search">Search</button>
                     </div>
                     <div class="col-6">
@@ -68,7 +63,7 @@
             <div class="container">
                 <div class="result_serach"><h4>Serach Result</h4></div>
                 <div id="search_result">
-                    <table class="table table-hover">
+                    <table class="table table-hover" id="table_searchResult">
                         <thead>
                             <tr>
                                 <th scope="col">Id</th>
@@ -156,4 +151,6 @@
 </body>
 </html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="~/js/common.js"></script>
 <script src="~/js/serach.js"></script>
