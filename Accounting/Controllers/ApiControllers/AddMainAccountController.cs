@@ -20,7 +20,9 @@ namespace Accounting.Controllers.ApiControllers
         public async Task<IActionResult> GetAllData()
         {
             var data = await _debitCodeService.GetDataAsync();
-            return Ok(data);
+            //เรียงลำดับจาก Code
+            var OrderByCode = data.OrderBy(z => z.Code);
+            return Ok(OrderByCode);
         }
         [HttpPost("GetDataByCode")]
         public async Task<IActionResult> GetDataByCode([FromBody] DebitCodeModel data)
