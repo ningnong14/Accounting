@@ -18,8 +18,7 @@
         public string Description { get; set; }
         public int? credit { get; set; }
         public int? debit { get; set; }
-        public DateTime dateTimeTo { get; set; }
-        public DateTime dateTimeFrom { get; set; }
+        public string dateTimeTo { get; set; }
       
     }
 }

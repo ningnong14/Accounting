@@ -1,4 +1,4 @@
-﻿using Accounting.Interfaces;
+using Accounting.Interfaces;
 using Accounting.Models.Model;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -26,7 +26,7 @@ namespace Accounting.Controllers.ApiControllers
             {
                 //Request Serach null = default SearchAll
                 //TODO ขาดคิดเพิ่มเงื่อนไขการ search ผ่านวันที่ , billId , description
-                if(data.DateTimeTo.ToString() is not null && data.DateTimeFrom.ToString() is not null)
+                if(!String.IsNullOrEmpty(data.DateTimeTo) && !String.IsNullOrEmpty(data.DateTimeFrom))
                 {
                     var dataSearch = await _searchService.GetData(data.DateTimeTo, data.DateTimeFrom);
                     var cal = await _searchService.CalculateSum(dataSearch);
@@ -42,7 +42,7 @@ namespace Accounting.Controllers.ApiControllers
                             Description= item.Description,
                             credit= item.Credit,
                             debit= item.Debit,
-                            dateTimeTo= item.DateTimeTo,
+                            dateTimeTo= item.DateTimeTo.ToString("yyyy-MM-dd"),
                         });
                     }
                     result.status = "200";

@@ -90,51 +90,49 @@ function SearachData(data) {
         })
         .then(function (data) {
             console.log("ResData", data);
+            GenTableResult(data.data);
         })
 }
 function GenTableResult(data) {
-    ////table_searchResult
-
-    //var table = document.getElementById("table_MainAccount");
-    //var row = table.insertRow();
-    //var cell = row.insertCell();
-    //cell.innerHTML = mainCount;
-    //cell = row.insertCell();
-    //cell.innerHTML = data.code;
-    //cell = row.insertCell();
-    //cell.innerHTML = data.discription;
-    ////button input 
-    //var btn = document.createElement('input');
-    //btn.type = "button";
-    //btn.className = "btn edit" + mainCount;
-    //btn.value = "edit";
-    //btn.id = "edit";
-    //cell_button_input = row.insertCell();
-    //cell_button_input.appendChild(btn);
-    ////button del
-    //var btn = document.createElement('input');
-    //btn.type = "button";
-    //btn.className = "btn del" + mainCount;
-    //btn.value = "del";
-    //btn.id = "del";
-    //cell_button_del = row.insertCell();
-    //cell_button_del.appendChild(btn);
-
-    var resultTable = $('#table_MainAccount');
-    //SetBody
-    var tbody = $('<tbody />');
-    resultTable.append(tbody);
-    for (var i = 0; i < data.length; i++) {
-
-        var rowData = Object.values(data[i]);
-        var tr = $('<tr />');
-        tbody.append(tr);
-        for (var j = 0; j < headerData.length; j++) {
-            var td = $('<td />');
-            var div = $('<div>' + rowData[j] + '</div>');
-            td.append(div);
-            tr.append(td);
-        }
+    //TODO แก้ไขข้อมูล Gentable
+    console.log("data", data);
+    console.log("length", data.length);
+    var a = [];
+    for (var i = 0; i <= data.length; i++) {
+        a = data;
+        var html =    '<tr>\
+                            <td>' + data[i].tagVoucher +'</td>\
+                            <td>' + data[i].dateTimeTo + '</td>\
+                            <td>' + data[i].codeVoucher + '</td>\
+                            <td>' + data[i].description + '</td>\
+                            <td>' + data[i].credit + '</td>\
+                            <td>' + data[i].debit + '</td>\
+                            <td>' + data[i].dateTimeTo + '</td>\
+                        </tr>';
+        $('#table_searchResult').append(html);
     }
+    console.log(a);
+
+    //var resultTable = $('#table_searchResult');
+    //$('#table_searchResult').append('<tr><td>COL1</td><td>COL2</td></tr>');
+    console.log("dataGentabble", data);
+    ////SetBody
+    //var tbody = $('<tbody />');
+    //resultTable.append(tbody);
+    //for (var i = 0; i < data.length; i++) {
+    //    var rowData = Object.values(data[i]);
+    //    var tr = $('<tr />');
+    //    tbody.append(tr);
+    //    for (var j = 0; j < headerData.length; j++) {
+    //        var td = $('<td />');
+    //        var div = $('<div>' + rowData[j] + '</div>');
+    //        td.append(div);
+    //        tr.append(td);
+    //    }
+    //}
+
+
+    $('.content_table').show();
+    $('.cal').show();
 
 }

@@ -9,6 +9,7 @@ using NuGet.Packaging.Signing;
 using OfficeOpenXml;
 using OfficeOpenXml.Table;
 using System.Data;
+using System.Globalization;
 
 namespace Accounting.Service
 {
@@ -40,8 +41,8 @@ namespace Accounting.Service
 
         public async Task<List<RecordAccounting>> GetData(string dateTimeTo, string dateTimeFrom)
         {
-            DateTime convertDateTimeTo = Convert.ToDateTime(dateTimeTo);
-            DateTime convertDateTimeFrom = Convert.ToDateTime(dateTimeFrom);
+            DateTime convertDateTimeTo = DateTime.ParseExact(dateTimeTo, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            DateTime convertDateTimeFrom = DateTime.ParseExact(dateTimeFrom, "yyyy-MM-dd", CultureInfo.InvariantCulture);
             var searchData = new BillAccountSpecification(convertDateTimeTo, convertDateTimeFrom);
             return await _recordAccounting.ListAsync(searchData);
         }
