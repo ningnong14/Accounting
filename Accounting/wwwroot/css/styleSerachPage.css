@@ -1,6 +1,7 @@
 ﻿.serach_box {
     height: 100%;
     width: 100%;
+
 }
 
 .headcontent {
@@ -17,6 +18,10 @@
 .headcontent .container{
     padding-bottom: 5px;
     border:2px solid pink;
+}
+.content_table .container {
+    padding-bottom: 5px;
+    border: 2px solid pink;
 }
 
 .cal .container .text_col .row {
@@ -75,6 +80,7 @@ h3 {
 
 .content_table .container .result_serach {
     margin-top: 30px;
+    margin-bottom: 20px;
 }
 
 .cal .container .text_cal {
@@ -123,4 +129,22 @@ h3 {
 }
 .focusErrorMsg{
     color:red;
+}
+
+#export {
+    height: 100%;
+    width: 60%;
+    background-color:green;
+    border-color:green;
+}
+
+#export_file {
+    display: flex;
+    justify-content: flex-end;
+}
+#table_searchResult {
+    margin-left: auto;
+    margin-right: auto;
+    font-size:18px;
+    text-align:center;
 }

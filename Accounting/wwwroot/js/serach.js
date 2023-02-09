@@ -1,4 +1,5 @@
-﻿$(document).ready(() => {
+﻿var resultDataSearch = [];
+$(document).ready(() => {
 
     //ยิง service เพื่อเอาค่า MainAccount มาใส่ dropdown
     GetMainAccount();
@@ -38,6 +39,31 @@
         $('#input_dateFrom').removeClass("focusErrorBox");
         $('#date_to').removeClass("focusErrorMsg");
         $('#date_from').removeClass("focusErrorMsg");
+        $('.content_table').hide();
+        $('.cal').hide();
+    })
+    //TODO เหลือยิงเส้น Excel ยังไม่เสร็จ
+    $('#button_export').click(function () {
+        console.log("Reqdata", resultDataSearch);
+        url = baseURL() + `api/Serach/ExportExcel`;
+        fetch(url, {
+            method: "POST",
+            headers: [
+                ["Content-Type", "application/json"],
+                ["Content-Type", "text/plain"]
+            ],
+            body: JSON.stringify(resultDataSearch),
+            credentials: "include",
+        })
+            .then(function (response) {
+                return response.json() // แปลงข้อมูลที่ได้เป็น json
+            })
+            .then(function (data) {
+                console.log("ResData", data);
+                console.log("ResData.data", data.data);
+                GenTableResult(data.data);
+                CalcreditDebit(data.data);
+            })
     })
 });
 
@@ -90,49 +116,43 @@ function SearachData(data) {
         })
         .then(function (data) {
             console.log("ResData", data);
+            console.log("ResData.data", data.data);
             GenTableResult(data.data);
+            CalcreditDebit(data.data);
         })
 }
-function GenTableResult(data) {
+function GenTableResult(searchData) {
     //TODO แก้ไขข้อมูล Gentable
-    console.log("data", data);
-    console.log("length", data.length);
-    var a = [];
-    for (var i = 0; i <= data.length; i++) {
-        a = data;
-        var html =    '<tr>\
-                            <td>' + data[i].tagVoucher +'</td>\
-                            <td>' + data[i].dateTimeTo + '</td>\
-                            <td>' + data[i].codeVoucher + '</td>\
-                            <td>' + data[i].description + '</td>\
-                            <td>' + data[i].credit + '</td>\
-                            <td>' + data[i].debit + '</td>\
-                            <td>' + data[i].dateTimeTo + '</td>\
+    var i = 1
+        for (var serach of searchData) {
+            var html = '<tr>\
+                            <td>' + i++ + '</td>\
+                            <td>' + serach.tagVoucher + '</td>\
+                            <td>' + serach.codeVoucher + '</td>\
+                            <td>' + serach.dateTimeTo + '</td>\
+                            <td>' + serach.mainAccount + '</td>\
+                            <td>' + serach.description + '</td>\
+                            <td>' + serach.credit + '</td>\
+                            <td>' + serach.debit + '</td>\
                         </tr>';
-        $('#table_searchResult').append(html);
-    }
-    console.log(a);
-
-    //var resultTable = $('#table_searchResult');
-    //$('#table_searchResult').append('<tr><td>COL1</td><td>COL2</td></tr>');
-    console.log("dataGentabble", data);
-    ////SetBody
-    //var tbody = $('<tbody />');
-    //resultTable.append(tbody);
-    //for (var i = 0; i < data.length; i++) {
-    //    var rowData = Object.values(data[i]);
-    //    var tr = $('<tr />');
-    //    tbody.append(tr);
-    //    for (var j = 0; j < headerData.length; j++) {
-    //        var td = $('<td />');
-    //        var div = $('<div>' + rowData[j] + '</div>');
-    //        td.append(div);
-    //        tr.append(td);
-    //    }
-    //}
-
-
+            $('#table_searchResult').append(html);
+        }
+    resultDataSearch.push(searchData);
+    console.log("resultDataSearch", resultDataSearch);
     $('.content_table').show();
     $('.cal').show();
+}
+function CalcreditDebit(searchData) {
+    var credit = 0;
+    var debit = 0;
+    var total = 0;
 
+    for (var cal of searchData) {
+        credit += cal.credit;
+        debit += cal.debit;
+    }
+    total = credit - debit;
+    $('#credit').val(credit);
+    $('#debit').val(debit);
+    $('#total').val(total);
 }

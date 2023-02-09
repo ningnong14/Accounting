@@ -36,6 +36,16 @@ $(document).ready(() => {
             saveRecordData(data);
             //reset data
             data = [];
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Your work has been saved',
+                showConfirmButton: false,
+                timer: 1000
+            }).then((result) => {
+                console.log("GoHome");
+                window.location.href = baseURL() + "/home";
+            })
         }
         else
         {
@@ -133,7 +143,7 @@ function dataMainAccount() {
             addRecord(data);
         })
 }
-//TODO: เขียนเส้น API insertData 
+
 function saveRecordData(dataRecord) {
     console.log("callSaveData");
     url = baseURL() + `api/RecordAccounting/InsertRecordAccount`;

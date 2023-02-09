@@ -61,13 +61,21 @@
         </div>
         <div class="content_table">
             <div class="container">
-                <div class="result_serach"><h4>Serach Result</h4></div>
+                <div class="row result_serach">
+                    <div class="col-3"><h4>Search Result</h4></div>
+                    <div class="col-3"></div>
+                    <div class="col-3"></div>
+                    <div class="col-3" id="export_file">
+                        <button class="btn btn-primary" type="button" id="button_export">ExportExcel</button>
+                    </div>
+                </div>
                 <div id="search_result">
                     <table class="table table-hover" id="table_searchResult">
                         <thead>
                             <tr>
                                 <th scope="col">Id</th>
                                 <th scope="col">TagVocher</th>
+                                <th scope="col">CodeVoucher</th>
                                 <th scope="col">Date</th>
                                 <th scope="col">Code</th>
                                 <th scope="col">Description</th>
@@ -99,7 +107,7 @@
                         <div class="row">
                             <div class="col-2">
                             </div>
-                            <div class="col-3" id="credit">
+                            <div class="col-3">
                                 <input type="text" name="credit" id="credit" disabled>
                             </div>
                             <div class="col-3">
