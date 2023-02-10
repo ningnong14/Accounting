@@ -15,22 +15,21 @@ namespace Accounting.Service
 {
     public class SerachService : ISearchService
     {
-        private readonly IRepository<BillRecord> _billRecordRepository;
         private readonly IRepository<RecordAccounting> _recordAccounting;
 
-        public SerachService(IRepository<BillRecord> billRecordRepository,IRepository<RecordAccounting> recordAccounting) 
+        public SerachService(IRepository<RecordAccounting> recordAccounting) 
         {
-            _billRecordRepository = billRecordRepository;
             _recordAccounting = recordAccounting;
         }
 
         //TODO 1. Cal Debit , Cal Credit , Balance 2. show data from query 3.export excel
 
-        public async Task<List<BillRecord>> GetData(int billId)
+        public async Task<List<RecordAccounting>> GetData(string codeMainAccount, string dateTimeTo, string dateTimeFrom)
         {
-            var serachData = new BillRecordSpecification(billId);
-            var data = await _billRecordRepository.ListAsync(serachData);
-            return data;
+            DateTime convertDateTimeTo = DateTime.ParseExact(dateTimeTo, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            DateTime convertDateTimeFrom = DateTime.ParseExact(dateTimeFrom, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            var serachData = new BillAccountSpecification(convertDateTimeTo, convertDateTimeFrom, codeMainAccount);
+            return  await _recordAccounting.ListAsync(serachData);
  
         }
 

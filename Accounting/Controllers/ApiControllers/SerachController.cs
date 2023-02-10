@@ -24,9 +24,8 @@ namespace Accounting.Controllers.ApiControllers
         {
             try
             {
-                //Request Serach null = default SearchAll
-                //TODO ขาดคิดเพิ่มเงื่อนไขการ search ผ่านวันที่ , billId , description
-                if(!String.IsNullOrEmpty(data.DateTimeTo) && !String.IsNullOrEmpty(data.DateTimeFrom))
+                // อยาก Search เฉพาะวันที่
+                if (String.IsNullOrEmpty(data.Name))
                 {
                     var dataSearch = await _searchService.GetData(data.DateTimeTo, data.DateTimeFrom);
                     var cal = await _searchService.CalculateSum(dataSearch);
@@ -54,10 +53,33 @@ namespace Accounting.Controllers.ApiControllers
                     result.Balance = cal.Balance;
                     return Ok(result);
                 }
-                else //เผื่อกรณี defalut serach All 
+                else //กรณีอยากเช็ค เฉพาะ codeMainAccount + Date แต่ละเดือน
                 {
-                    var dataSearch = await _searchService.GetData();
-                    return Ok(dataSearch);
+                    var dataSearch = await _searchService.GetData(data.Name,data.DateTimeTo, data.DateTimeFrom);
+                    var cal = await _searchService.CalculateSum(dataSearch);
+                    ResSearchResult result = new ResSearchResult();
+                    List<SearchData> resSearchData = new List<SearchData>();
+                    foreach (var item in dataSearch)
+                    {
+                        resSearchData.Add(new SearchData
+                        {
+                            tagVoucher = item.TagVoucher,
+                            codeVoucher = item.CodeVoucher,
+                            MainAccount = item.MainAccount,
+                            Description = item.Description,
+                            credit = item.Credit,
+                            debit = item.Debit,
+                            dateTimeTo = item.DateTimeTo.ToString("yyyy-MM-dd"),
+                        });
+                    }
+                    result.status = "200";
+                    result.messageCode = "OK";
+                    result.message = "Call Service SerachResult Success";
+                    result.data = resSearchData;
+                    result.TotalDebit = cal.TotalDebit;
+                    result.TotalCredit = cal.TotalCredit;
+                    result.Balance = cal.Balance;
+                    return Ok(result);
                 }
             }catch(Exception ex)
             {
@@ -65,42 +87,41 @@ namespace Accounting.Controllers.ApiControllers
             }
         }
 
-       /* //SerachDataById
-        [HttpPost("SerachResult")]
-        public async Task<IActionResult> SerachResult([FromBody] int billId)
-        {
-            var data = await _searchService.GetData(billId);
-            var cal = await _searchService.CalculateSum(data);
-            ResSearchResult result = new ResSearchResult();
-            List<SearchData> resSearchData = new List<SearchData>();
-            foreach (var item in data)
-            {
-                resSearchData.Add(new SearchData
-                {
-                    BillId = item.BillId,
-                    Date = item.Date.ToString(),
-                    Voucher = item.Voucher,
-                    MainAccount = item.MainAccount,
-                    Description = item.Description,
-                    Debit = item.Debit,
-                    Credit = item.Credit,
-                });
-            }
-            result.status = "200";
-            result.messageCode = "OK";
-            result.message = "Call Service SerachResult Success";
-            result.data = resSearchData;
-            result.TotalDebit = cal.TotalDebit;
-            result.TotalCredit = cal.TotalCredit;
-            result.Balance = cal.Balance;
-            return Ok(result);
-        }
-*/
+        /* //SerachDataById
+         [HttpPost("SerachResult")]
+         public async Task<IActionResult> SerachResult([FromBody] int billId)
+         {
+             var data = await _searchService.GetData(billId);
+             var cal = await _searchService.CalculateSum(data);
+             ResSearchResult result = new ResSearchResult();
+             List<SearchData> resSearchData = new List<SearchData>();
+             foreach (var item in data)
+             {
+                 resSearchData.Add(new SearchData
+                 {
+                     BillId = item.BillId,
+                     Date = item.Date.ToString(),
+                     Voucher = item.Voucher,
+                     MainAccount = item.MainAccount,
+                     Description = item.Description,
+                     Debit = item.Debit,
+                     Credit = item.Credit,
+                 });
+             }
+             result.status = "200";
+             result.messageCode = "OK";
+             result.message = "Call Service SerachResult Success";
+             result.data = resSearchData;
+             result.TotalDebit = cal.TotalDebit;
+             result.TotalCredit = cal.TotalCredit;
+             result.Balance = cal.Balance;
+             return Ok(result);
+         }
+ */
         [HttpPost("ExportExcel")]
-        public async Task<IActionResult> ExportExcel([FromBody]ReqSearch dataSearch)
+        public async Task<IActionResult> ExportExcel([FromBody] ResSearchResult dataSearch)
         {
-            var data = await _searchService.GetData(dataSearch.dateTimeTo, dataSearch.dateTimeFrom);
-            DataTable table = (DataTable)JsonConvert.DeserializeObject(JsonConvert.SerializeObject(data), (typeof(DataTable)));
+            DataTable table = (DataTable)JsonConvert.DeserializeObject(JsonConvert.SerializeObject(dataSearch), (typeof(DataTable)));
             Stream stream = new MemoryStream();
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             using (var package = new ExcelPackage(stream))
