@@ -64,15 +64,11 @@ $(document).ready(() => {
             body: JSON.stringify(resultDataSearch),
             credentials: "include",
         })
-            .then(function (response) {
-                return response.json() // แปลงข้อมูลที่ได้เป็น json
-            })
-            .then(function (data) {
-                console.log("ResData", data);
-                console.log("ResData.data", data.data);
-                GenTableResult(data.data);
-                CalcreditDebit(data.data);
-            })
+            .then(res => res.blob())
+            .then(blob => {
+                var file = window.URL.createObjectURL(blob);
+                window.location.assign(file);
+            });
     })
     //$.ajax({
     //    type: 'POST',
