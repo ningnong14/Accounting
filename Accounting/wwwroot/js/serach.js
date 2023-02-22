@@ -46,7 +46,7 @@ $(document).ready(() => {
         $('.cal').hide();
     })
 
-    //TODO เหลือ Gen excel เด้ง popup ให้โหลด
+    //TODO เหลือชื่อไฟล์ Excel ที่ยังแก้ไขไม่ได้
     $('#button_export').click(function () {
         url = baseURL() + `api/Serach/ExportExcel`;
         console.log("export Data Excel", resultDataSearch);
@@ -186,10 +186,11 @@ function SearachData(data) {
 function GenTableResult(searchData) {
     console.log("searchData", searchData);
     resultDataSearch = [];
-    $('#table_searchResult').empty();
+    //TODO หัวตารางหาย กรณี searchซ้ำ ต้อง reset append
+    $('.result').empty();
     var i = 1
         for (var search of searchData) {
-            var html = '<tr>\
+            var html = '<tr class="result">\
                             <td>' + i++ + '</td>\
                             <td>' + search.tagVoucher + '</td>\
                             <td>' + search.codeVoucher + '</td>\
