@@ -119,7 +119,7 @@ namespace Accounting.Controllers.ApiControllers
          }
  */
         [HttpPost("ExportExcel")]
-        public async Task<IActionResult> ExportExcel([FromBody] ResSearchResult dataSearch)
+        public async Task<IActionResult> ExportExcel([FromBody] List<SearchDataForExport> dataSearch)
         {
             DataTable table = (DataTable)JsonConvert.DeserializeObject(JsonConvert.SerializeObject(dataSearch), (typeof(DataTable)));
             Stream stream = new MemoryStream();

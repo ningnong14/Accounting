@@ -21,4 +21,16 @@
         public string dateTimeTo { get; set; }
       
     }
+
+    public class SearchDataForExport
+    {
+        public int? tagVoucher { get; set; }
+        public string codeVoucher { get; set; }
+        public string MainAccount { get; set; }
+        public string Description { get; set; }
+        public int? credit { get; set; }
+        public int? debit { get; set; }
+        public string dateTimeTo { get; set; }
+
+    }
 }
